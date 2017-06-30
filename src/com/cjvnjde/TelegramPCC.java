@@ -69,7 +69,9 @@ public class TelegramPCC extends TelegramLongPollingBot {
                     menu(keyboardFirstRow, keyboardSecondRow, "Your photo", chatId);
                     break;
                 case "Photo":
+
                     sendPhoto(ComputerController.createScreenCapture(), chatId);
+
                     keyboardFirstRow.add("PrintScreen");
                     keyboardSecondRow.add("Shutdown");
                     menu(keyboardFirstRow, keyboardSecondRow, "Your photo", chatId);
@@ -131,6 +133,7 @@ public class TelegramPCC extends TelegramLongPollingBot {
 
     private void sendPhoto(BufferedImage im, String chatId){
         SendPhoto photo = new SendPhoto();
+
         ByteArrayOutputStream os = new ByteArrayOutputStream();
 
         try {
@@ -142,10 +145,12 @@ public class TelegramPCC extends TelegramLongPollingBot {
         InputStream is = new ByteArrayInputStream(os.toByteArray());
 
         photo.setNewPhoto("name.jpg", is);
+
         photo.setChatId(chatId);
 
         try {
             sendPhoto(photo);
+
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

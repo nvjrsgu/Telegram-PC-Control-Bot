@@ -20,9 +20,13 @@ public class ComputerController {
     }
 
     public static BufferedImage createScreenCapture(){
+
         Dimension sSize = Toolkit.getDefaultToolkit().getScreenSize();
+
         Rectangle rectangle = new Rectangle(sSize);
+
         try {
+
             return new Robot().createScreenCapture(rectangle);
         } catch (AWTException e) {
             System.out.println("Can't create screen capture");
